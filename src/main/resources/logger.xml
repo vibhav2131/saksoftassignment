@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
+	<bean id="consoleAppender"
+		class="org.apache.log4j.ConsoleAppender">
+	</bean>
+	<bean id="logger" class="org.apache.log4j.Logger"
+		factory-method="getLogger">
+		<constructor-arg value="com.example.myapp" />
+	</bean>
+	<bean id="rootLogger" class="org.apache.log4j.Logger"
+		factory-method="getRootLogger">
+		<property name="level" value="INFO" />
+		<property name="additivity" value="false" />
+		<property name="appenderRef">
+			<ref bean="consoleAppender" />
+		</property>
+		<property name="appenderRef">
+			<ref bean="fileAppender" />
+		</property>
+	</bean>
+</beans>
